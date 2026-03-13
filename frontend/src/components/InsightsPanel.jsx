@@ -33,7 +33,7 @@ export default function InsightsPanel({ insights, loading }) {
     },
     {
       label: 'Top Keywords',
-      value: (insights.topKeywords || []).slice(0, 3).join(', ') || '-',
+      value: (insights.recentKeywords || []).slice(0, 3).join(', ') || '-',
       icon: <FaHashtag className="text-secondary text-2xl" />,
     }
   ];
