@@ -49,7 +49,7 @@ async function registerUserController(req, res) {
         const cookieOptions = {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
             path: "/"
         };
         res.cookie("token", token, cookieOptions)
@@ -105,7 +105,7 @@ async function loginUserController(req, res) {
         const cookieOptions = {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
             path: "/"
         };
         res.cookie("token", token, cookieOptions);
@@ -135,7 +135,7 @@ async function logoutUserController(req, res) {
         res.clearCookie("token", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
             path: "/"
         });
         res.status(200).json({
