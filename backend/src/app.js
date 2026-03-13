@@ -13,9 +13,14 @@ const app = express();
 
 /**
  * Enable CORS for frontend
+ * Gracefully handles trailing slashes in VITE_API_BASE_URL to prevent CORS errors
  */
+const allowedOrigin = process.env.VITE_API_BASE_URL 
+    ? process.env.VITE_API_BASE_URL.replace(/\/$/, '') 
+    : "http://localhost:5173";
+
 app.use(cors({
-    origin: process.env.VITE_API_BASE_URL,
+    origin: allowedOrigin,
     credentials: true
 }));
 
